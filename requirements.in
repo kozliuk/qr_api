@@ -1,0 +1,9 @@
+fastapi
+loguru
+uvicorn[standard]
+black
+flake8
+flake8-import-order
+gunicorn
+qrcode
+Pillow

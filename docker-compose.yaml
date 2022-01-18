@@ -1,0 +1,35 @@
+version: "3.2"
+
+x-app: &default
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+services:
+  format:
+    <<: *default
+    command: make format
+    volumes:
+      - .:/usr/src/app
+  lint:
+    <<: *default
+    command: make lint
+  style:
+    <<: *default
+    command: make style
+  dev:
+    <<: *default
+    command: make local
+    environment:
+      PORT: 8080
+    ports:
+      - 8080:8080
+  prod:
+    <<: *default
+    command: make deploy
+    environment:
+      PORT: 8080
+    ports:
+      - 80:8080
+volumes:
+  format:
